@@ -10,6 +10,7 @@
     
     --font-geist-sans: "Geist", "Geist Fallback", sans-serif;
     --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Playfair Display", "Merriweather", "Georgia", serif;
 }
 
 @font-face {
@@ -100,13 +101,13 @@ ul { list-style: none; }
 .btn-interactive::before {
     content: '';
     position: absolute;
-    left: 22%;
-    top: 40%;
+    left: 14px;
+    top: 50%;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: var(--color-accent);
-    transform: scale(1);
+    transform: translateY(-50%) scale(1);
     transition: left 0.35s cubic-bezier(.4,0,.2,1),
                 top  0.35s cubic-bezier(.4,0,.2,1),
                 width  0.35s cubic-bezier(.4,0,.2,1),
@@ -120,12 +121,14 @@ ul { list-style: none; }
     width: 100%;
     height: 100%;
     border-radius: 0;
+    transform: translateY(0) scale(1);
 }
 .btn-interactive:hover { color: var(--color-white); border-color: var(--color-accent); }
 
 /* Default text — slides right and fades out on hover */
 .btn-interactive .btn-text-default {
     display: inline-block;
+    padding-left: 12px;
     transform: translateX(2px);
     transition: transform 0.3s, opacity 0.3s;
     position: relative;
@@ -362,3 +365,4 @@ footer {
 .footer-col p { color: var(--color-muted); margin-bottom: 8px; }
 .footer-links-row a { color: var(--color-muted); font-size: 0.95rem; }
 .footer-links-row a:hover { color: var(--color-text); }
+h1, h2, h3 { font-family: var(--font-serif); } 

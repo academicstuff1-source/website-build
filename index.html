@@ -29,23 +29,20 @@
 
     <main>
         <!-- Hero -->
-        <section class="hero dark-hero">
-            <!-- Particles Container -->
-            <div id="tsparticles" class="hero-particles"></div>
-            
+        <section class="hero">
             <div class="container" style="position: relative; z-index: 10;">
-                <span class="hero-eyebrow" style="color: var(--color-surface); opacity: 0.8;">Administrative support for independent wellness businesses</span>
+                <span class="hero-eyebrow">Administrative support for independent wellness businesses</span>
                 <h1>More time with clients.<br>Less time chasing admin.</h1>
-                <p style="color: var(--color-surface); opacity: 0.9;">Lumen Desk helps solo wellness professionals organize inquiries, appointment reminders, and follow-up, so you can focus on the work only you can do.</p>
+                <p>Lumen Desk helps solo wellness professionals organize inquiries, appointment reminders, and follow-up, so you can focus on the work only you can do.</p>
                 <div class="hero-actions">
-                    <a href="#contact" class="btn-interactive btn-interactive--light">
+                    <a href="#contact" class="btn-interactive">
                         <span class="btn-text-default">Book a Free Workflow Call</span>
                         <span class="btn-text-hover">
                             Book a Free Workflow Call
                             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                         </span>
                     </a>
-                    <a href="#how-it-works" class="btn btn-outline" style="border-color: var(--color-surface); color: var(--color-bg);">See How It Works</a>
+                    <a href="#how-it-works" class="btn btn-outline">See How It Works</a>
                 </div>
                 
                 <div class="ui-mockup">
@@ -209,86 +206,6 @@
     </footer>
 
     <!-- Manilla pixel particle canvas — zero dependencies, HiDPI-sharp -->
-    <script>
-        (function () {
-            const section = document.querySelector('.dark-hero');
-            const canvas  = document.createElement('canvas');
-            canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;image-rendering:pixelated;';
-            section.insertBefore(canvas, section.firstChild);
-
-            const ctx = canvas.getContext('2d');
-            let W, H, DPR, particles;
-
-            // Manilla / clay palette
-            const COLORS = ['#C4A882', '#D4BC9A', '#B89A70', '#E8D5B7', '#A08860'];
-
-            function resize() {
-                // Use physical pixels so squares are razor-sharp on Retina/HiDPI
-                DPR = window.devicePixelRatio || 1;
-                const cssW = section.offsetWidth;
-                const cssH = section.offsetHeight;
-                canvas.width  = Math.round(cssW * DPR);
-                canvas.height = Math.round(cssH * DPR);
-                // Scale context once so all drawing coords stay in CSS px
-                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-                W = cssW;
-                H = cssH;
-            }
-
-            function rand(a, b) { return a + Math.random() * (b - a); }
-
-            function makeParticle(startAtBottom) {
-                // Pixel size in CSS px — integer only so edges stay crisp
-                const size = Math.floor(rand(2, 5));
-                return {
-                    x:      Math.floor(rand(0, W)),
-                    y:      startAtBottom ? H + size : Math.floor(rand(0, H)),
-                    size,
-                    color:  COLORS[Math.floor(Math.random() * COLORS.length)],
-                    alpha:  rand(0.2, 0.75),
-                    vx:     rand(-0.4, 0.4),
-                    vy:     rand(-0.8, -0.2),   // drift upward
-                    dAlpha: rand(0.003, 0.007),
-                    dir:    1
-                };
-            }
-
-            function init() {
-                resize();
-                particles = Array.from({ length: 180 }, () => makeParticle(false));
-            }
-
-            function tick() {
-                ctx.clearRect(0, 0, W, H);
-
-                for (let i = 0; i < particles.length; i++) {
-                    const p = particles[i];
-
-                    ctx.globalAlpha = Math.max(0, Math.min(1, p.alpha));
-                    ctx.fillStyle   = p.color;
-                    // Snap to integer CSS px — keeps each square pixel-perfect
-                    ctx.fillRect(Math.round(p.x), Math.round(p.y), p.size, p.size);
-
-                    p.x    += p.vx;
-                    p.y    += p.vy;
-                    p.alpha += p.dAlpha * p.dir;
-                    if (p.alpha >= 0.74 || p.alpha <= 0.08) p.dir *= -1;
-
-                    // Recycle when off-screen — re-enter from the bottom
-                    if (p.y + p.size < 0 || p.x + p.size < 0 || p.x > W + p.size) {
-                        particles[i] = makeParticle(true);
-                    }
-                }
-
-                ctx.globalAlpha = 1;
-                requestAnimationFrame(tick);
-            }
-
-            window.addEventListener('resize', () => { resize(); });
-            init();
-            tick();
-        })();
-    </script>
 </body>
 </html>
 
